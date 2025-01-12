@@ -77,6 +77,7 @@ namespace Wabbajack_Automagic
                 outputToConsole("Found button at: (" + currentPoint.Value.X + "," + currentPoint.Value.Y + ")");
                 clickMouse(currentPoint.Value.X + (slowButton.Width / 2), currentPoint.Value.Y + (slowButton.Height / 2));
                 wait(5000);
+                SetCursorPos(0, 0);
             }
             else
             {
@@ -103,11 +104,11 @@ namespace Wabbajack_Automagic
         }
         public Bitmap Screenshot()
         {
-            var screenShot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            var screenShot = new Bitmap(SystemInformation.VirtualScreen.Width, SystemInformation.VirtualScreen.Height);
 
             using (var g = Graphics.FromImage(screenShot))
             {
-                g.CopyFromScreen(0, 0, 0, 0, Screen.PrimaryScreen.Bounds.Size);
+                g.CopyFromScreen(0, 0, 0, 0, screenShot.Size);
             }
 
             return screenShot;
